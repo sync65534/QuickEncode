@@ -69,5 +69,6 @@ else
     CONTENT="$INPUT"
 fi
 
-# Perform encoding
+# Safely pass content to encoder
+CONTENT=$(echo "$CONTENT" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g' -e "s/'/\\'/g")
 encode "$CONTENT" "$ENCODING"
